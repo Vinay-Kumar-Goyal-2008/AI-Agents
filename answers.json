@@ -1,0 +1,470 @@
+[
+    {
+        "id": "q01",
+        "answer": "In the Mem0 paper, the memory-architecture variant that augments the vector store with an entity-relation graph is named Mem0g. [DOC 0][DOC 1] This graph-based variant organizes memory into an evolving knowledge graph. [DOC 1] The paper attributes several advantages to Mem0g, including greatly improving multi-hop reasoning, eliminating redundant memory entries, and providing better long-term coherence. [DOC 1] The graph-based Mem0g is also generally more robust. [DOC 1]",
+        "cited_papers": [
+            "2511.01448v2",
+            "2603.27910v2",
+            "2602.05665v1",
+            "2604.22085v1"
+        ]
+    },
+    {
+        "id": "q02",
+        "answer": "The τ-bench paper introduces Pass^k as a reliability metric [DOC 0]. This metric is defined as the probability that an agent succeeds across all k repeated executions of the same task [DOC 0]. Pass^k quantifies the probability that repeated executions of the same task all succeed [DOC 1]. It estimates the probability that k executions of a task all succeed [DOC 2]. Pass^n directly measures reliability as reproducible success [DOC 2].",
+        "cited_papers": [
+            "2505.10924v4",
+            "2604.17849v1"
+        ]
+    },
+    {
+        "id": "q03",
+        "answer": "The OSWorld benchmark contains 361 real-world computer tasks at release [DOC 0]. These tasks are executed in fully functional Ubuntu virtual machines [DOC 0]. OSWorld evaluates end-to-end performance [DOC 0]. The 361 evaluated tasks span 10 application domains [DOC 2]. Each task specifies an initial environment state and a natural-language instruction [DOC 2]. Task completion is assessed by execution-based evaluation scripts [DOC 2].",
+        "cited_papers": [
+            "2604.05157v3",
+            "2603.26266v2",
+            "2601.07181v1",
+            "2505.21964v2",
+            "2502.18525v2",
+            "2510.02250v2"
+        ]
+    },
+    {
+        "id": "q04",
+        "answer": "In the SWE-agent paper, 'ACI' stands for Agent-Computer Interface. [DOC 0] SWE-agent defines ACI to enhance software engineering. [DOC 0] Agent-computer interfaces enable automated software engineering. [DOC 2] An ACI architecture, similar to SWE-Agent's, provides structured commands and feedback mechanisms allowing LLM agents to reliably interact with design tools and manage complex hardware design tasks. [DOC 1]",
+        "cited_papers": [
+            "2507.10644v4",
+            "2509.22644v1",
+            "2510.04607v2",
+            "2508.15940v1"
+        ]
+    },
+    {
+        "id": "q05",
+        "answer": "The survey discusses various interoperability protocols. [DOC 1]\nIt grounds the era in underlying interoperability protocols such as MCP, A2A, and FIPA ACL. [DOC 1, DOC 4]\nAdditionally, the protocol layer mentioned includes MCP, A2A, and ANP. [DOC 1, DOC 3]\nTherefore, the four interoperability protocols are MCP, A2A, ANP, and FIPA ACL.",
+        "cited_papers": [
+            "2507.10644v4"
+        ]
+    },
+    {
+        "id": "q06",
+        "answer": "The provided evidence does not explicitly list the families of agentic-RAG patterns as distinguished by \"The Agentic RAG survey\". [DOC 0]",
+        "cited_papers": [
+            "2509.25299v1",
+            "2505.00472v2",
+            "2512.13564v2",
+            "2602.02007v4",
+            "2509.03536v1"
+        ]
+    },
+    {
+        "id": "q07",
+        "answer": "AppWorld, developed by Trivedi et al. (2024), is a benchmark designed to evaluate function calling and interactive coding agents. [DOC 4] This benchmark simulates a controllable world that exposes the agent to 9 day-to-day applications. [DOC 4] These applications include examples such as email and Spotify. [DOC 4] The evidence does not explicitly state the number of tasks AppWorld exposes to the agent.",
+        "cited_papers": [
+            "2604.06126v1",
+            "2509.00366v1",
+            "2501.11733v2",
+            "2506.04135v4",
+            "2512.10696v2"
+        ]
+    },
+    {
+        "id": "q08",
+        "answer": "The UI-TARS paper reports results on OSWorld, a standard GUI-agent benchmark for computer use settings. [DOC 0, DOC 1] UI-TARS-2 establishes superior performance across a wide range of GUI-agent benchmarks, demonstrating consistent improvements in computer use settings. [DOC 0] On OSWorld, UI-TARS-2 achieves a reported success rate of 47.5%. [DOC 0, DOC 1]",
+        "cited_papers": [
+            "2509.02544v2",
+            "2512.15431v2",
+            "2505.21496v1"
+        ]
+    },
+    {
+        "id": "q09",
+        "answer": "The provided evidence does not contain any information about OpenHands or its core abstraction that unifies agent steps.",
+        "cited_papers": [
+            "2512.19537v1",
+            "2601.15876v2",
+            "2604.04918v1",
+            "2507.10644v4",
+            "2604.07429v1"
+        ]
+    },
+    {
+        "id": "q10",
+        "answer": "The OS-MAP paper proposes a taxonomy of computer-using-agent capabilities structured along two key dimensions: automation levels and generalization scopes [DOC 0]. The automation level is a five-level capability taxonomy based on degrees of autonomy [DOC 0]. This dimension captures the degree of agent autonomy [DOC 4]. The generalization scope is derived from a real-world user demand hierarchy [DOC 1]. It measures agents’ capability transferability [DOC 4]. These two dimensions are combined into a unified evaluation matrix [DOC 0].",
+        "cited_papers": [
+            "2507.19132v1",
+            "2602.07283v1"
+        ]
+    },
+    {
+        "id": "q11",
+        "answer": "Mem0 stores extracted memories in an external memory store as compact natural-language representations, each associated with semantic embeddings to support efficient similarity-based retrieval [DOC 2]. It utilizes a vector database for salient conversational memories and introduces hierarchical tiers inspired by operating systems [DOC 0, DOC 9]. Mem0 also distinguishes memory ownership by user, session, or agent [DOC 6]. A-MEM, inspired by the Zettelkasten method, represents each interaction as an A-Mem [DOC 2].\n\nRegarding their write/update policies, Mem0 incorporates an explicit memory update mechanism that evaluates newly extracted information against existing memories [DOC 2]. An LLM selects the operation, such as adding new entries, updating existing ones, or removing outdated information, after vector-based retrieval [DOC 1, DOC 2]. Mem0 has an \"open-gate policy\" where newly acquired information is directly appended or merged into the long-term store, making it susceptible to memory contamination [DOC 9]. In contrast, A-MEM uses generative updates where an LLM creates links and rewrites related notes via memory evolution [DOC 1]. This approach implicitly performs the update operation rather than picking from a fixed action set, enabling dynamic organization and evolution of long-term memory [DOC 1, DOC 2].\n\nFor retrieval mechanisms, Mem0 serves as a foundational lightweight retrieval module, employing efficient similarity-based and vector-based retrieval to rapidly resolve the majority of routine queries by extracting and updating salient conversational memories [DOC 0, DOC 1, DOC 2]. It retrieves a small set of semantically relevant memory entries during inference [DOC 2]. A-MEM retrieves top-k similar notes using a fixed encoder [DOC 1].",
+        "cited_papers": [
+            "2603.18631v1",
+            "2601.20352v3",
+            "2604.10981v2",
+            "2603.04740v1",
+            "2604.01707v2",
+            "2604.12285v1",
+            "2601.14192v1",
+            "2602.11243v2"
+        ]
+    },
+    {
+        "id": "q12",
+        "answer": "UI-TARS-1.5, a variant of UI-TARS, was trained using supervised fine-tuning (SFT) and Direct Preference Optimization (DPO) [DOC 6]. UI-TARS-2, its successor, introduced a data flywheel for scalable trajectory generation [DOC 1]. Furthermore, UI-TARS-2 utilized stabilized multi-turn reinforcement learning (RL) training [DOC 1]. The benefits of UI-TARS-2's performance are attributed to iterative training and reinforcement learning [DOC 2]. Detailed analyses of training dynamics in UI-TARS-2 provide insights into achieving stability and efficiency in large-scale agent RL [DOC 3].",
+        "cited_papers": [
+            "2512.15431v2",
+            "2602.12430v3",
+            "2508.04700v2",
+            "2509.02544v2",
+            "2510.00536v1",
+            "2509.06477v2",
+            "2603.26085v2"
+        ]
+    },
+    {
+        "id": "q13",
+        "answer": "The provided evidence does not contain information about \"The Multi-Turn Multi-Agent Orchestration paper\" or \"the Multi-Agent Collaboration via Evolving Orchestration paper\", making it impossible to contrast their specific orchestration strategies.\n\nHowever, the evidence does support the claim that multi-agent setups can outperform single LLMs [DOC 1, DOC 3]. A multi-agent system can communicate and share information, enabling more efficient collaboration to collectively tackle complex tasks that a single agent would struggle to handle [DOC 1]. This internal communication creates a dynamic and flexible environment where agents can work together on problems requiring different expertise or diverse approaches [DOC 1]. Organizing LLM-based agents into multi-agent systems can substantially enhance reasoning, adaptability, and overall performance beyond single-agent settings [DOC 3]. Early frameworks demonstrated gains in factuality, robustness, and efficiency [DOC 3].\n\nGeneral multi-agent orchestration methods often involve mechanisms such as prompt engineering, role assignment, and predefined workflow architectures [DOC 0]. This hand-crafted orchestration is well-suited for low-cost, rapid-iteration applications [DOC 0]. However, a fundamental limitation of this approach is its inability to internalize collaborative strategies into the model’s parameters, which constrains generalization [DOC 0]. Early multi-agent systems relied on manually defined roles and static interaction protocols, which, while straightforward for well-defined tasks, struggle with the variability and long-horizon nature of complex problems [DOC 0].",
+        "cited_papers": [
+            "2509.09292v1",
+            "2502.13172v2",
+            "2510.16720v2",
+            "2601.02577v1",
+            "2511.01448v2",
+            "2604.23626v1",
+            "2512.13564v2",
+            "2510.04851v1",
+            "2510.19949v2"
+        ]
+    },
+    {
+        "id": "q14",
+        "answer": "The Multi-Agent Collaboration Mechanism is presented optimistically as a key element of AI self-evolution [DOC 3]. Efficient cooperation among multiple agents can significantly enhance the overall system performance [DOC 3]. Multi-Agent Debate (MAD) explicitly leverages the diversity of perspectives within different LLM agents, allowing them to contribute unique insights in structured dialogues [DOC 0]. This collaborative process has the potential to enhance the depth, factuality, and robustness of model-generated reasoning [DOC 0]. Debate has been shown to effectively surface flaws in reasoning [DOC 0]. LLMs effectively learn from debate to reduce unsafe responses, achieving up to a 17.7% reduction with debate alone and over 23.5% when combined with long-term memory on HarmBench [DOC 1]. Multi-Agent Debate improves reasoning and factual accuracy by having multiple LLMs interact [DOC 1]. Prior work shows that debate outperforms single-agent methods like self-reflection or ensembling [DOC 1]. Debate also enhances the robustness of safety evaluation by surfacing disagreements and divergent reasoning paths [DOC 5]. However, the provided evidence does not contain information regarding the specific findings of the 'Can LLM Agents Really Debate?' paper, which would be necessary to contrast with this optimistic framing. Therefore, a direct contrast based on the requested paper's findings cannot be provided from the given evidence.",
+        "cited_papers": [
+            "2602.03036v2",
+            "2602.01885v1",
+            "2604.01007v2",
+            "2604.07929v1",
+            "2506.11083v2",
+            "2601.16356v1",
+            "2507.21407v2"
+        ]
+    },
+    {
+        "id": "q15",
+        "answer": "The \"Deep Research Agents survey,\" which outlines the progression of Deep Research agents and GUI agents, categorizes agents based on their primary functions and task objectives [DOC 1, DOC 3]. This survey defines Deep Research agents as excelling at complex reasoning and analysis for knowledge-intensive tasks, such as writing literature reviews or conducting market analysis [DOC 1]. GUI agents, by contrast, simulate human interaction with graphical environments for operation-intensive tasks like automated software testing [DOC 1]. Furthermore, Deep Research agents are divided by task objectives into definitive answering, which focuses on concise factual questions and multi-hop verification, and generative synthesis, which addresses complex, open-ended tasks requiring integration of multiple sources [DOC 9].\n\nThe 'Deep Research: A Survey of Autonomous Research Agents' paper by Zhang et al. (2025g) is identified as having a taxonomy that does not fully reflect the current breadth and complexity of the research landscape [DOC 0, DOC 6]. Its taxonomy was developed prior to a number of rapid methodological advances [DOC 6]. Specifically, emerging directions in 2025, such as memory frameworks that distill reusable tools from past experiences or memory-augmented test-time scaling methods, remain underrepresented in its classification [DOC 6].\n\nTherefore, the taxonomies most disagree on the inclusion and representation of recent methodological advances, particularly concerning advanced memory systems and the distillation of reusable tools from past experiences [DOC 6]. The Zhang et al. (2025g) paper's classification is considered less comprehensive regarding these newer developments [DOC 6].",
+        "cited_papers": [
+            "2510.16720v2",
+            "2503.07919v3",
+            "2602.16313v1",
+            "2512.13564v2",
+            "2512.18746v1"
+        ]
+    },
+    {
+        "id": "q16",
+        "answer": "AppWorld is a benchmark designed to evaluate function calling and interactive coding agents [DOC 0, DOC 6]. It simulates a world of 9 day-to-day applications through 457 APIs and is populated with the digital activities of approximately 100 simulated users [DOC 0, DOC 6]. In contrast, simulated users in benchmarks akin to τ-bench provide value by having specific expertise that the agent may not possess [DOC 4]. These simulated users also provide guidance on how the task should be performed [DOC 4].",
+        "cited_papers": [
+            "2604.09937v1",
+            "2510.01353v1",
+            "2601.20335v2",
+            "2507.22358v1",
+            "2602.05665v1",
+            "2502.18525v2",
+            "2604.07929v1",
+            "2511.19957v2",
+            "2602.11750v1",
+            "2512.10696v2"
+        ]
+    },
+    {
+        "id": "q17",
+        "answer": "Both OpenHands and SWE-agent expose tools for code-editing agents. SWE-agent's design for file editing involves the use of language-specific parsers and editing commands [DOC 0]. It also utilizes dedicated search and file editing tools [DOC 3]. This approach suggests a fine-grained, language-aware design for modifying code. In contrast, the OpenHands framework allows agents to invoke tools such as `str_replace_editor` [DOC 4]. An OpenHands agent is also equipped with a comprehensive suite of tools for file system operations, including the ability to edit files and perform text editing and file manipulation within a Linux Docker environment [DOC 7]. The `str_replace_editor` tool indicates a string-replacement-based granularity for editing within OpenHands.",
+        "cited_papers": [
+            "2508.19461v1",
+            "2512.22087v1",
+            "2502.18525v2",
+            "2508.15940v1"
+        ]
+    },
+    {
+        "id": "q18",
+        "answer": "The provided evidence does not explicitly contain documents titled \"The Open and Reproducible Deep Research paper\" or \"From Web Search Towards Agentic Deep Research.\" Therefore, it is not possible to identify the specific reproducibility failures that each of these papers calls out, as requested by the question, based solely on the facts explicitly present in the given evidence.\n\nHowever, the evidence does highlight general reproducibility challenges pertinent to Deep Research and related agentic systems. A significant issue impacting reproducibility in research-oriented tasks, including Deep Research, is that most existing web-research datasets are not publicly released. [DOC 2] This lack of open access to data and code can make reproducibility tricky in some cases, hindering the ability of other researchers to reproduce or verify results. [DOC 3] For instance, if code is to be released later, it impacts immediate reproducibility. [DOC 3]\n\nFurthermore, the transparency of Deep Research outputs can be an issue, as Deep Research often offers only top-level URLs. [DOC 6] Overly concise reports and vague URLs reduce transparency, making it harder to evaluate and identify failure points in such situations. [DOC 6] To improve reproducibility and user trust, the release of clear and structured search and reasoning trajectories is advocated. [DOC 6] In cases involving closed-source models, access may be limited, but researchers should still have a path to reproducing or verifying results. [DOC 3] Detailed disclosure of information, such as hyperparameters and training procedures, is crucial for experimental result reproducibility. [DOC 9]",
+        "cited_papers": [
+            "2508.00031v2",
+            "2601.18197v1",
+            "2510.16720v2",
+            "2503.07919v3",
+            "2505.16986v2",
+            "2512.00742v1",
+            "2506.14477v1",
+            "2503.03704v5"
+        ]
+    },
+    {
+        "id": "q19",
+        "answer": "The role of a 'reflector' or self-critique step is explored in both Mobile-Agent-v3 and MobileUse, with some agreement on its fundamental function but divergence on its optimal application. In Mobile-Agent-v3, the Reflector Agent is a critical component for ensuring robustness and learning from mistakes [DOC 1]. Its function evaluates the efficacy of an action by comparing the state transition with the Worker’s intent [DOC 1]. This agent analyzes the pre-action state, the post-action state, and the action tuple [DOC 1]. A judgment of SUCCESS is rendered if the state change aligns with the Worker’s thought and summary [DOC 1]. Conversely, FAILURE is returned if the GUI presents an error, remains unchanged unexpectedly, or transitions to an irrelevant state, with feedback providing a causal explanation [DOC 1].\n\nSimilarly, MobileUse features an Action Reflector, which operates on a single step to provide immediate feedback [DOC 4]. This reflector is designed to provide immediate feedback after each action execution [DOC 6]. It observes screenshots before and after the action execution to determine whether the action achieved its intended effect [DOC 6]. The generated feedback describes the error and possible causes [DOC 6]. MobileUse also employs a hierarchical reflection architecture, including a Trajectory Reflector and a Global Reflector [DOC 4].\n\nRegarding when reflection helps, Mobile-Agent-v3 implies a continuous role for its Reflector Agent in ensuring robustness and learning from mistakes after each action [DOC 1]. It does not specify conditions under which reflection might be less beneficial. In contrast, MobileUse, while designing its Action Reflector for immediate feedback, explicitly notes that invoking it at every step can introduce latency and unnecessary computation [DOC 6]. This is because most actions made by the Operator are correct [DOC 6]. Therefore, MobileUse suggests that while reflection is valuable for error detection and feedback, its continuous, per-step invocation may not always be efficient.",
+        "cited_papers": [
+            "2506.08012v1",
+            "2502.13172v2",
+            "2508.15144v2",
+            "2510.16720v2",
+            "2512.12818v1",
+            "2501.11733v2",
+            "2506.11083v2",
+            "2504.09283v1",
+            "2507.16853v1"
+        ]
+    },
+    {
+        "id": "q20",
+        "answer": "UI-TARS-2 handles long-horizon agent execution, demonstrating robustness across diverse agent tasks and integrating critical enhancements for stability in such settings. [DOC 0] [DOC 1] Its approach to preserving state across long trajectories involves implementing stateful agent environments. These environments are designed to preserve execution states across multiple tool invocations, enabling continuous state transitions and maintaining context throughout extended problem-solving sessions. This supports complex, multi-step reasoning processes that require persistent environmental memory. [DOC 0] An agent in UI-TARS-2 is modeled as a parameterized policy that maps historical context, memory states, and the current environment into behavioral outputs. [DOC 3]\n\nHowever, the provided evidence does not contain information regarding \"OpenHands,\" including whether it handles long-horizon agent execution or its specific approach to preserving state across long trajectories. Therefore, a comparison of their differing approaches cannot be made based solely on the given documents.",
+        "cited_papers": [
+            "2512.10371v2",
+            "2604.17849v1",
+            "2509.21823v2",
+            "2601.04500v1",
+            "2603.18429v1",
+            "2509.02544v2",
+            "2510.17790v3",
+            "2602.08235v1"
+        ]
+    },
+    {
+        "id": "q21",
+        "answer": "Long-term memory architectures proposed for LLM agents between 2024 and 2026 primarily focus on synergizing memory with reasoning and implementing dynamic memory update mechanisms. Mem1, introduced by Zhou et al. in 2025, represents an architecture designed for learning to synergize memory and reasoning, aiming for efficient long-horizon agents [DOC 0]. The central design trade-off addressed by Mem1 is optimizing efficiency for tasks that require extended temporal understanding and operation [DOC 0]. The specific storage paradigm utilized by Mem1 is not explicitly detailed within the provided evidence.\n\nAnother significant area of development within this period involves dynamic memory update mechanisms, which enable LLMs to track information changes across various scenarios [DOC 1]. Multiple research efforts between 2024 and 2025 contribute to this paradigm, including works by Qian et al. (2025), Jimenez Gutierrez et al. (2024), Su et al. (2025), Xu et al. (2025), Wang et al. (2025c), and Chhikara et al. (2025) [DOC 1]. These approaches are centered on designing systems that can adaptively update their stored information [DOC 1]. The central design trade-off for these dynamic memory update mechanisms lies in balancing the necessity for continuous adaptability to evolving information with the potential complexities and computational overhead associated with managing and maintaining dynamic memory consistency [DOC 1]. The specific storage paradigms, such as vector, graph, or hierarchical, for these individual dynamic memory update mechanisms are not explicitly provided in the evidence for the 2024-2026 timeframe. The provided evidence does not explicitly detail other long-term memory architectures proposed within the 2024-2026 period that can be grouped by specific storage paradigms like vector, graph, or hierarchical, nor does it identify their central design trade-offs within this timeframe.",
+        "cited_papers": [
+            "2502.13172v2",
+            "2604.16548v1",
+            "2506.08098v1",
+            "2601.20352v3",
+            "2603.04740v1",
+            "2603.29493v4",
+            "2604.01707v2",
+            "2601.20465v1",
+            "2604.23626v1",
+            "2601.01885v2",
+            "2512.13564v2",
+            "2604.01007v2",
+            "2511.03475v4",
+            "2604.09747v1",
+            "2603.02473v2",
+            "2604.14158v1"
+        ]
+    },
+    {
+        "id": "q22",
+        "answer": "The 2024-2026 multi-agent literature presents several recurring arguments for and against utilizing multi-agent systems over a single, stronger Large Language Model (LLM). A primary argument in favor of multi-agent systems is their ability to extend the capabilities and application domain of single LLM-based agent systems, particularly in areas like software engineering and automating research (Zhang et al. 2024; Wang et al. 2024b) [DOC 0]. Proponents argue that the collective intelligence derived from a group of specialized agents can yield better results than relying on a single agent (Hong et al. 2023) [DOC 0]. Multi-agent frameworks represent a key trend in the development of LLM-driven agents [DOC 2].\n\nFurthermore, multi-agent systems are posited to overcome a fundamental problem: the capability overload of a single policy network [DOC 2]. Coupling heterogeneous abilities, such as high-level strategic planning with low-level visual perception and precise execution, into the same model inevitably leads to optimization conflicts and role confusion [DOC 2]. Multi-agent systems address this by innovating through architecture, thoroughly decoupling different responsibilities to enhance all facets of the agent’s capabilities via specialized division of labor and collaboration [DOC 2]. This specialized division of labor and intelligent collaboration allows multi-agent systems to overcome the inherent limitations of single agents in handling complex, dynamic, and long-horizon tasks [DOC 2]. For example, multi-agent architectures integrate LLMs to overcome the constraints inherent to using standalone LLMs in hardware design [DOC 3].\n\nConversely, significant arguments against multi-agent systems revolve around security and operational challenges. Strongly interacting networks of autonomous agents pose novel security problems that are poorly understood and could constitute systemic risks (OpenAI 2024a) [DOC 4]. A specific vulnerability identified is the \"Multi-Agent Security Tax,\" which involves the propagation of malicious prompts within multi-agent LLM systems, analogous to worms in traditional digital systems [DOC 0, DOC 4]. Beyond security, the literature also highlights practical concerns such as the computational costs associated with multi-agent approaches, which raise environmental concerns regarding energy consumption [DOC 9]. Some methods, for instance, can average 66 seconds per interaction step [DOC 9].\n\nRegarding empirical claims, the literature appears to disagree on the sufficiency and architectural implementation of memory in AI agents. On one hand, research published in 2024 suggests that LLMs possess strong capabilities in reasoning, planning, memory, and utilizing external tools (arXiv:2403.19962v1, 29 Mar 2024) [DOC 5]. This implies that current LLMs are already robust in handling memory. However, a 2026 paper argues that intelligence in AI today is \"powerful per session and amnesiac across time\" [DOC 7]. This perspective posits that the field has not yet built the most consequential piece of infrastructure needed to fix this lack of continuity across time, suggesting a fundamental architectural gap in how AI carries forward intelligence over extended periods [DOC 7]. This indicates a divergence in views on whether current LLMs adequately address the long-term memory requirements for truly continuous and adaptive intelligence.",
+        "cited_papers": [
+            "2505.00472v2",
+            "2604.23626v1",
+            "2503.21760v2",
+            "2512.13564v2",
+            "2601.01885v2",
+            "2504.09283v1",
+            "2502.19145v2",
+            "2506.07398v2",
+            "2508.15940v1",
+            "2511.22235v2",
+            "2502.13172v2",
+            "2512.12818v1",
+            "2604.17273v1",
+            "2411.07954v2",
+            "2506.14866v2",
+            "2601.20465v1",
+            "2505.16827v1",
+            "2603.23516v2",
+            "2604.09747v1",
+            "2505.22657v2"
+        ]
+    },
+    {
+        "id": "q23",
+        "answer": "As of late 2025, the evaluation of computer-use and GUI-agents is characterized by ongoing surveys, the development of specific benchmarks, advancements in agent systems, and the formulation of capability taxonomies, although a unified safety-and-security framework for evaluation remains an area for further development. A comprehensive survey provides an overview of OS agents, focusing on their core components, agent frameworks, and evaluation benchmarks across desktop, mobile, and browser environments. [DOC 0] Sager et al. (2025) review instruction-based computer-control agents, formalizing the problem and presenting a taxonomy from environment, interaction, and agent perspectives, along with representative datasets and evaluation protocols. [DOC 0] Zhang et al. (2024a) survey LLM-brained GUI agents, emphasizing their evolution, key techniques, and application scenarios on web and mobile platforms. [DOC 0] These works offer valuable overviews but mainly emphasize agent construction, capability development, resources, or vulnerability enumeration, and do not provide a unified treatment of CUA-specific threats, defenses, and evaluation practices under a single safety-and-security framework. [DOC 0]\n\nIn the realm of benchmarks, \"WebTestBench\" is evaluating computer-use agents towards end-to-end automated web testing, utilizing a Test Checklist that includes Functionality, Constraint, Interaction, and Content. [DOC 9] \"See, Plan, Snap\" is another method focused on evaluating Multimodal GUI Agents in Scratch, detailing scripts, variables, costumes, and sounds within the Scratch environment for assessment. [DOC 5] The \"GTA1: GUI Test-time Scaling Agent,\" published by Salesforce AI Research on 2025-10-07, exemplifies an agent system designed to execute desktop computer tasks on Ubuntu. [DOC 3] This agent's system prompt includes instructions for beginning tasks with a concise checklist of conceptual sub-tasks, revising the checklist based on the latest screenshot and previous actions, and interacting solely using provided tool actions based on observable elements. [DOC 3] Computer-use agents are also being explored as judges for generative user interfaces, with improvement requirements including adding missing functionality, implementing JavaScript functionality for user interactions, and preserving existing working functionality. [DOC 12]\n\nRegarding agent systems, the state of the art in UI control is represented by nine computer use agents announced publicly between 2024 and 2025, which operate across desktop, browser, and mobile platforms. [DOC 1] Notable developments include OpenAI's \"computer-using-agent\" in 2025 [DOC 2] and \"Ui-tars: Pioneering automated gui interaction with native agents\" by Qin et al. (2025). [DOC 2] A survey published in October 2025, \"Beyond Pipelines: A Survey of the Paradigm Shift toward Model-Native Agentic AI,\" discusses methods like compressing verbose web page content into a concise “evidence + summary” format to reduce context length and interference. [DOC 4] Research into agent memory is also prominent, with works like \"Unveiling Privacy Risks in LLM Agent Memory\" [DOC 6], \"Memory in the Age of AI Agents\" [DOC 7], \"BMAM: Brain-inspired Multi-Agent Memory Framework\" [DOC 8], and \"Hindsight is 20/20: Building Agent Memory that Retains, Recalls, and Reflects\" [DOC 10] exploring aspects such as memory compression, semantic consolidation, and parallel retrieval strategies.\n\nCapability taxonomies are being developed to map the design space of user experience for computer use agents. An initial taxonomy was created based on reviewing state-of-the-art agents from 2024 to 2025. [DOC 1] This taxonomy categorizes the design space for LLM-based computer use agents, containing themes and sub-themes of design considerations related to user experience. [DOC 1] Sager et al. (2025) also contribute a taxonomy for instruction-based computer-control agents, considering environment, interaction, and agent perspectives. [DOC 0]",
+        "cited_papers": [
+            "2511.00810v3",
+            "2604.23626v1",
+            "2512.13564v2",
+            "2510.16720v2",
+            "2602.10814v1",
+            "2511.15567v1",
+            "2507.05791v5",
+            "2502.13172v2",
+            "2603.24533v1",
+            "2512.12818v1",
+            "2603.25226v1",
+            "2602.07283v1",
+            "2602.09319v2",
+            "2411.07954v2",
+            "2506.14866v2",
+            "2601.20465v1",
+            "2510.13896v2",
+            "2505.10924v4",
+            "2603.23516v2",
+            "2604.09747v1"
+        ]
+    },
+    {
+        "id": "q24",
+        "answer": "The landscape of deep-research agent systems from 2024-2026 showcases diverse architectures, each emphasizing different core capabilities such as planning, retrieval, reflection, and synthesis. These LLM-based agents are designed to actively interact with external environments to execute complex, multi-step workflows [DOC 1]. An examination of at least four such systems reveals their distinct component configurations and operational focuses.\n\n**Reflexion (2024)** is identified as a Large Model AI Agent from 2024 [DOC 0]. While the provided evidence does not detail its internal architecture extensively, its name, \"Reflexion,\" strongly implies the presence of a **reflector** component [DOC 0]. This component would likely be responsible for processing past experiences or outcomes to inform and improve future actions or reasoning, aligning with the broader trend of agents learning and evolving through experience [DOC 4, DOC 6]. The evidence does not explicitly describe planner, retriever, or synthesizer components within Reflexion's architecture.\n\n**Cognitive Kernel (Gravitas, 2024)** presents a more structured architectural design [DOC 2]. This system incorporates a \"perception kernel,\" a \"memory kernel,\" and a \"reasoning kernel\" [DOC 2]. The \"reasoning kernel\" functions as a **planner** by orchestrating the perception and memory kernels, moving towards an LLM-driven \"Autopilot\" system [DOC 2]. The \"memory kernel\" is specifically designed to perceive and memorize localized state information, thereby necessitating a **retriever** component to access and utilize this stored data [DOC 2]. No explicit reflector or synthesizer components are detailed for Cognitive Kernel in the provided evidence.\n\n**L1 (2025)** is described as a system focused on \"Controlling How Long A Reasoning Model Thinks With Reinforcement Learning\" [DOC 4]. This directly indicates a **planner** component, which is the \"reasoning model\" itself [DOC 4]. The unique aspect of L1 is its use of reinforcement learning to dynamically control the duration of this reasoning process [DOC 4]. This adaptive control mechanism suggests an advanced form of planning or meta-cognition, where the agent learns to optimize its thought allocation. The evidence does not explicitly detail retriever, reflector, or synthesizer components for L1.\n\n**Perplexity AI (2025)** is characterized as \"An AI-powered Search and Answer Engine\" [DOC 4]. This functional description inherently implies the presence of two key architectural components. Its role as a \"Search\" engine requires a robust **retriever** component capable of accessing and fetching relevant information [DOC 4]. Furthermore, its function as an \"Answer Engine\" necessitates a **synthesizer** component to process the retrieved information and formulate coherent responses [DOC 4]. The evidence does not explicitly describe planner or reflector components for Perplexity AI.\n\nThese systems most differ in their architectural emphasis and the specific components they highlight. Cognitive Kernel distinguishes itself with a modular design of orchestrated kernels for perception, memory, and reasoning, with its \"reasoning kernel\" serving as a central **planner** [DOC 2]. Perplexity AI's architecture is defined by its direct application as a search and answer engine, making its **retriever** and **synthesizer** components central to its operation [DOC 4]. Reflexion, by its name, emphasizes a **reflector** component, suggesting a primary focus on self-correction and learning from experience [DOC 0]. L1's unique contribution lies in its dynamic control over the thinking duration of its **planner** (reasoning model) using reinforcement learning, a capability not explicitly detailed in the other systems [DOC 4]. While Cognitive Kernel and Perplexity AI both feature a **retriever**, Cognitive Kernel's is integrated into an internal memory system for localized state information [DOC 2], whereas Perplexity AI's is geared towards broader information search [DOC 4]. The explicit presence of a **synthesizer** is unique to Perplexity AI among these four systems [DOC 4]. The **planner** component is central to Cognitive Kernel's orchestration and L1's reasoning control [DOC 2, DOC 4].",
+        "cited_papers": [
+            "2502.13172v2",
+            "2509.20729v2",
+            "2510.16720v2",
+            "2506.16042v2",
+            "2411.07954v2",
+            "2512.19537v1",
+            "2506.14079v3",
+            "2512.12818v1",
+            "2601.20465v1",
+            "2512.13564v2",
+            "2604.23626v1",
+            "2604.12231v1",
+            "2603.23516v2",
+            "2604.09747v1",
+            "2602.09319v2",
+            "2601.14192v1",
+            "2604.09574v1",
+            "2506.23844v1"
+        ]
+    },
+    {
+        "id": "q25",
+        "answer": "A thorough review of the provided 2024-2026 literature reveals no explicit mention or detailed discussion of the agent interoperability protocols identified as MCP, A2A, ACP, or ANP. Consequently, based strictly on the evidence presented, it is not possible to summarize the landscape of these specific protocols or identify trade-offs commonly discussed across them. The documents provided focus on various other aspects of agentic AI and computer use agents, but these particular interoperability protocols are not captured within this body of literature.\n\nFor instance, research on health coaching agents describes a Dual-Stream memory architecture that includes narrative and clinical streams, alongside a reconciliation engine designed for discrepancy characterization [DOC 0]. The clinical stream (MC) is constructed from a curated FHIR R4 bundle, optimized to retain active or resolved conditions, medications, allergies, and recent observations within an approximate 1100-1600 token context window [DOC 0]. This stream utilizes structured inline tags, such as [ResourceType] display [SYSTEM:CODE], to ensure rigorous resource-level precision and recall matching during evaluation [DOC 0]. While this details an internal memory component (MC) for an agent, it does not present MC as an interoperability protocol for agents to communicate with each other.\n\nOther literature surveys the paradigm shift toward model-native agentic AI, outlining various agentic planning methods from both pipeline-based and model-native paradigms, with publication dates ranging into 2025 [DOC 1]. Examples include LLM+MCTS (2024.09) and ReST-MCTS* (2024.06), which are general text-based methods developed in academia [DOC 1]. Discussions also extend to computer use agents, such as the A11y-CUA Dataset (2026), which characterizes accessibility gaps in these agents [DOC 3]. Further work explores automatic knowledge evolving for computer use agents, detailing agent steps involving mouse movements and drags for task completion [DOC 4]. The development of secure computer-use agents is also addressed through simulation-to-real reasoning correction, evaluating models like Qwen2.5-VL-72B and Qwen3-VL-235B on performance metrics [DOC 12]. These areas of research contribute to understanding agent capabilities and development but do not touch upon the specified interoperability protocols.\n\nAdditionally, memory-augmented agentic systems are explored, with proposals like Thought-Retriever (published 04/2026) focusing on retrieving \"thoughts\" rather than raw data for memory [DOC 7, DOC 9]. The concept of building long-term and multimodal memory for agentic AI is also a subject of investigation [DOC 5]. Research also delves into fast long-context inference via context reuse, analyzing attention patterns when explicit annotations are introduced to recall original relevance ranking (Rajasekaran et al., 2025) [DOC 10, DOC 11]. Another area of focus is resolving domain bias in GUI agents through real-time web video retrieval and plug-and-play annotation, utilizing subtitle-assisted domain classification and subtitle-driven topic extraction [DOC 6, DOC 13]. Despite the diverse range of topics covered in these 2024-2026 publications, the specific agent interoperability protocols MCP, A2A, ACP, and ANP are not mentioned. Therefore, any summary of their landscape or identification of common trade-offs would require information beyond the scope of the provided evidence.",
+        "cited_papers": [
+            "2604.01560v1",
+            "2511.03475v4",
+            "2504.09283v1",
+            "2511.10674v2",
+            "2510.16720v2",
+            "2602.09310v1",
+            "2603.26266v2",
+            "2508.13250v1",
+            "2602.06025v3",
+            "2510.23730v2",
+            "2512.20651v2",
+            "2604.12231v1",
+            "2505.23422v1",
+            "2604.27045v1",
+            "2506.11083v2",
+            "2604.24441v1",
+            "2601.06031v1",
+            "2602.16313v1",
+            "2601.12822v1",
+            "2505.21964v2",
+            "2601.06037v4",
+            "2507.10644v4"
+        ]
+    },
+    {
+        "id": "q26",
+        "answer": "The 2024-2026 literature underscores the critical role of reflection and self-critique loops in enhancing the capabilities of Large Language Model (LLM) agents. Recent research indicates that LLM outputs can be significantly improved at test time through iterated critique and refinement processes, without the need to update the model's weights [DOC 0]. This foundational work on iterative feedback loops is supported by studies such as those by He et al. (2025c; 2026), Li et al. (2026), and He et al. (2025a) [DOC 0]. These approaches demonstrate that agents can achieve higher quality outputs by continuously evaluating and refining their own work [DOC 0].\n\nSpecific methodologies highlight how these loops are implemented. For instance, Self-Refine utilizes self-generated feedback loops to enable an agent to revise its initial output until quality improvements are achieved [DOC 0]. Similarly, Reflexion introduced language agents that store textual reflections in an episodic memory buffer [DOC 0]. These stored reflections are then used to improve subsequent attempts after the agent has observed and processed task feedback, facilitating continuous learning and adaptation [DOC 0]. While Self-Refine (Madaan et al., 2023) and Reflexion (Shinn et al., 2023) were developed prior to 2024, the 2024-2026 literature discusses them as key motivators for a broader trend towards agents that store and reuse experience, primarily targeting within-task improvement [DOC 0].\n\nBeyond within-task refinement, the contemporary literature also addresses the online evolution of agentic memory through continuous feedback. The Live-Evo framework, for example, involves agents that analyze information to assess the likelihood of various outcomes [DOC 10]. A crucial aspect of this process is the instruction for agents to prioritize fresh evidence when their findings contradict established guidelines [DOC 10]. This mechanism exemplifies a form of dynamic self-critique and adaptive learning, ensuring that agents can self-correct and maintain up-to-date and accurate behaviors based on new information [DOC 10].\n\nRegarding any disagreement on when reflection helps versus hurts, the provided 2024-2026 literature consistently presents reflection and self-critique loops as beneficial mechanisms. The evidence uniformly indicates that these loops are effective strategies for improving LLM agent performance, output quality, and adaptive capabilities. There is no explicit information within the given documents that surfaces any disagreement or instances where reflection is described as detrimental to LLM agents.",
+        "cited_papers": [
+            "2604.23626v1",
+            "2512.13564v2",
+            "2601.01885v2",
+            "2511.03475v4",
+            "2603.07392v1",
+            "2503.03704v5",
+            "2506.10387v1",
+            "2602.09310v1",
+            "2602.02369v1",
+            "2511.04307v2",
+            "2502.13172v2",
+            "2512.12818v1",
+            "2602.15654v2",
+            "2503.04392v2",
+            "2506.11083v2",
+            "2411.07954v2",
+            "2603.12631v2",
+            "2601.20465v1",
+            "2505.10924v4",
+            "2604.09747v1"
+        ]
+    },
+    {
+        "id": "q27",
+        "answer": "The SWE-agent, OpenHands, and related code-agent papers propose several key improvements to Agent-Computer Interfaces (ACIs) to enhance autonomous software engineering and computer-use capabilities. A primary improvement is the introduction of ACIs to enable agents to perform operations directly on source control systems, thereby enhancing automated software engineering. [DOC 0], [DOC 1], [DOC 4]\n\nFurther advancements in ACI architecture, as seen in systems like ASIC-Agent which builds upon SWE-Agent and OpenHands, involve providing structured commands and feedback mechanisms. These mechanisms allow Large Language Model (LLM) agents to reliably interact with various design tools and manage complex tasks effectively. [DOC 3] This customization extends to hardware design workflows, where hardware-specific ACIs include specialized functions for running and using Electronic Design Automation (EDA) tools, analyzing Hardware Description Languages (HDL), and parsing, capabilities often lacking in traditional software-focused ACIs. [DOC 3]\n\nAnother proposed improvement focuses on the clarity and robustness of agent interaction with interfaces. Agent S, for instance, suggests an ACI that utilizes Accessibility APIs to label on-screen controls, aiming for more precise interaction. [DOC 4] The concept of Declarative Machine Interfaces (DMI) is also highlighted for providing unambiguous control access, which is crucial for preventing incorrect functionality that can arise from ambiguous greedy methods. [DOC 4]\n\nThe broader context of agent interaction with computing environments also points to improvements in how agents perceive and act. Harness engineering, which encompasses the design of tools, interfaces, memory, and feedback loops, mediates how an agent perceives and acts on its environment by exposing action and observation interfaces. This includes custom agent-computer interfaces for repository navigation. [DOC 13] Computer-Using Agents (CUAs) leverage ACIs to process visual information from screenshots, invoke APIs or command-line tools, and execute actions such as typing, clicking, and scrolling, indicating a move towards more comprehensive multi-modal interaction capabilities. [DOC 10] The perception component of CUAs is also enhanced to gather information from the environment through various input modalities, including screen reading, system logs, and user inputs. [DOC 9]\n\nFinally, efforts like Programming with Pixels contribute to the improvement of the agent-computer interface ecosystem by unifying existing environments into a single, general-purpose platform. This separation of environment design from agent design standardizes evaluation and allows any existing agent to be modeled within the framework, providing an important testbed for current and future SWE agents. [DOC 6] These collective improvements aim to make ACIs more robust, specialized, and capable of supporting complex, autonomous agent operations across diverse computing tasks.",
+        "cited_papers": [
+            "2604.25850v4",
+            "2602.09082v2",
+            "2602.21477v1",
+            "2509.22644v1",
+            "2510.04607v2",
+            "2601.07181v1",
+            "2508.09123v3",
+            "2509.02544v2",
+            "2505.10924v4",
+            "2602.05665v1",
+            "2502.18525v2",
+            "2508.15940v1",
+            "2511.15567v1"
+        ]
+    },
+    {
+        "id": "q28",
+        "answer": "Hybrid retrieval, which integrates the strengths of multiple retrieval paradigms, is a key strategy in the 2024-2026 agentic-RAG literature for enhancing information retrieval [DOC 0]. This approach often combines lexical and semantic retrieval, sometimes incorporating reranking, to achieve a balance between precise term matching and broader semantic alignment [DOC 0].\n\nHybrid retrieval demonstrates superiority over dense-only retrieval in several scenarios. Systems such as Agent KB (Tang et al., 2025d) and MIRIX (Wang and Chen, 2025) combine lexical and semantic retrieval to balance precise term or tool matching with broader semantic alignment [DOC 0]. Recent work has shifted toward improving retrieval systems by introducing hybrid search techniques that blend traditional keyword-based search, like BM25, with more advanced semantic retrieval systems, utilizing dense vector embeddings to improve both the relevance and context-awareness of retrieved information [DOC 8]. In the context of agent memory, where coherent interaction streams often have substantial overlap, similarity top-k retrieval can return repetitive memories [DOC 2]. Here, hybrid approaches are beneficial for distinguishing decisive evidence that hinges on a small update, constraint, or factual difference among otherwise similar interactions [DOC 2]. Furthermore, applying reranker or query expansion, which are advanced retrieval strategies, substantially reduces the missing rate, particularly under the top-3 setting, with improvements ranging from 4.9 to 11.4 percentage points [DOC 4]. On the LoCoMo dataset, the retrieval method, including hybrid reranking, is a dominant factor, with average accuracy spanning 20 points across different methods (Yuan et al., 2026) [DOC 5]. Agentic RAG paradigms actively assess their own information needs and refine whether retrieval is sufficient (Asai et al., 2024; Xu et al., 2026) [DOC 1].\n\nHowever, the 2024-2026 literature also highlights situations where hybrid retrieval, or its advanced components, does not consistently outperform dense-only methods, and can even lead to degraded performance. Performance gains from advanced retrieval strategies are not consistent across different models [DOC 4]. For example, the effectiveness of query expansion critically depends on the quality of the model generating the reformulated queries; with Qwen, query expansion under the top-5 setting even degraded retrieval performance [DOC 4]. This suggests that while techniques like query expansion (Zhang et al., 2024) and re-ranking (Yu et al., 2024) can refine retrieval, their impact is not universally positive [DOC 1, DOC 4]. Moreover, introducing advanced retrieval strategies can sometimes reduce downstream performance, likely due to the inclusion of semantically similar but noisy entries, except for GPT-4o at top-3 [DOC 4]. This issue is further supported by observations on the LongMemEval-s dataset, where F1 scores initially improve at lower Top-K values but decline at higher Top-K levels, suggesting that longer contexts can introduce noise that negatively impacts the model’s effectiveness [DOC 10]. Therefore, while hybrid retrieval offers significant advantages in specific contexts, its implementation requires careful consideration of the model, the quality of query generation, and the potential for noise introduction.",
+        "cited_papers": [
+            "2601.06152v1",
+            "2502.13172v2",
+            "2603.18631v1",
+            "2505.19549v2",
+            "2512.13564v2",
+            "2510.15966v1",
+            "2604.17377v1",
+            "2602.02007v4",
+            "2604.20598v1",
+            "2602.05665v1",
+            "2505.16348v4",
+            "2510.11290v1",
+            "2506.02539v3",
+            "2603.02473v2",
+            "2507.19715v1",
+            "2603.16862v1"
+        ]
+    },
+    {
+        "id": "q29",
+        "answer": "Several distinct open problems in agentic AI evaluation and development have been articulated in papers published between 2024 and 2026. One significant area of concern involves multi-agent security, which de Witt (2025) argues should be considered a distinct field. [DOC 0] Within this field, de Witt (2025) outlines open problems such as collusion, attribution, and cascade dynamics, highlighting complex interactions and vulnerabilities in multi-agent AI systems. [DOC 0] These issues represent critical challenges for ensuring the secure and reliable operation of agentic AI. [DOC 0]\n\nAnother critical gap identified pertains to the practical challenges faced by developers in the lifecycle of Agent-based systems. [DOC 4] Asgaria, Panichella, Derakhshanfar, and Olsthoorn (2025) articulate that the most prevalent and difficult challenges in building, deploying, and maintaining these systems, along with their distribution across the Agent ecosystem, remain unclear. [DOC 4] This lack of clarity is attributed to limited empirical evidence, as much of the existing literature is based on author-driven experiences or controlled evaluations, rather than large-scale, developer-reported data. [DOC 4] This highlights a significant need for better characterization of recurring engineering difficulties in developer-facing evidence. [DOC 6]\n\nA third fundamental challenge in agentic AI, particularly in the realm of world modeling, concerns the extension of internal representations. [DOC 2] The paper \"Agentic World Modeling: Foundations, Capabilities, Laws, and Beyond\" identifies how to extend these representations to physical, digital, social, and scientific worlds as one of the most important open problems in the field. [DOC 2] This challenge is crucial for enabling agentic AI to navigate, interpret, and ultimately reshape diverse environments by internalizing their governing laws and simulating their dynamics. [DOC 2]\n\nFurthermore, the engineering implementation of modern Agentic systems faces severe challenges that are recognized as open problems. [DOC 5] The paper \"Robust, Observable, and Evolvable Agentic Systems Engineering: A Principled Framework Validated via the Fairy GUI Agent\" specifically points out difficulties in user intention alignment, runtime self-adaptation, and complex logic layering. [DOC 5] These challenges, while manifesting in the AI domain, are essentially complex software engineering problems that require robust architectural paradigms. [DOC 5]\n\nFinally, security vulnerabilities related to attacks on agentic AI systems represent another distinct open problem. [DOC 0] Zou et al. (2025) demonstrate near-universal and transferable prompt-injection and policy-violation attacks through large-scale red teaming. [DOC 0] These findings expose significant defense gaps, indicating that current protective measures are insufficient against sophisticated adversarial techniques targeting agent policies and memory. [DOC 0] These diverse problems collectively underscore the ongoing complexities in the evaluation, security, and practical deployment of advanced agentic AI systems.",
+        "cited_papers": [
+            "2502.13172v2",
+            "2509.20729v2",
+            "2604.22748v1",
+            "2603.23064v3",
+            "2411.07954v2",
+            "2512.09458v1",
+            "2512.12818v1",
+            "2601.20465v1",
+            "2512.13564v2",
+            "2604.23626v1",
+            "2510.25423v2",
+            "2510.23730v2",
+            "2604.09747v1",
+            "2602.09319v2",
+            "2601.16356v1",
+            "2506.23844v1",
+            "2506.11083v2"
+        ]
+    },
+    {
+        "id": "q30",
+        "answer": "Common failure modes observed in deployed LLM agents across the 2024-2026 literature on agent memory, tool use, and reflection include losing track of previously extracted values, misbinding entities across applications, drifting from the intended subgoal, and issues with consistent state and entity representation. One significant failure mode involves agents losing track of previously extracted values, which leads to errors accumulating over long trajectories and significantly reducing overall task completion rates [DOC 0]. This difficulty primarily arises from the challenge of maintaining a consistent intermediate state over extended interaction horizons [DOC 0]. Existing methods frequently struggle to deliver accurate and consistent responses in complex, long-horizon interaction scenarios [DOC 6]. For multi-turn agents, performance is contingent on accumulating and preserving many granular, reusable insights over long horizons, requiring the model to retain step-by-step procedures and tool-use rules across an interaction [DOC 10]. Similarly, in domain-specific and knowledge-intensive benchmarks, accuracy depends on keeping numerous specific rules, edge cases, and domain concepts that are difficult to compress into a single instruction prompt without losing detail [DOC 10]. Another common failure mode is the misbinding of entities across different applications [DOC 0], which can lead to incorrect actions or misunderstandings when an agent interacts with multiple software environments. Furthermore, LLM agents frequently exhibit a tendency to drift from the intended subgoal after multiple steps [DOC 0]. This deviation from the original objective can occur even when individual perception or reasoning steps appear correct, indicating that the core issue lies in maintaining consistent intermediate state over long interaction horizons [DOC 0]. A fourth critical failure mode pertains to the inconsistent representation of state and entities, particularly regarding cross-modality and temporal consistency [DOC 12]. Reliable agent operation necessitates cross-modality and temporal consistency [DOC 12]. Problems arise from inconsistent Personally Identifiable Information (PII) detection, where an entity might be detected as PII earlier but not later, or vice-versa [DOC 12]. Additionally, inconsistent placeholder assignment is observed, where the same semantic entity is mapped to different placeholders across different instances or modalities [DOC 12]. For reliable operation, the agent must observe exactly the same anonymized identifier for the same semantic entity throughout the task lifecycle [DOC 12]. These issues highlight the broader challenges commonly faced by long-term memory systems in realistic interactive settings [DOC 8]. The quality of memory construction and updating, including event segmentation, information extraction, conflict detection, and evidence sufficiency evaluation, relies extensively on the semantic and pragmatic judgment capabilities of the underlying LLM, and its quality inevitably depends on this judgment [DOC 8].",
+        "cited_papers": [
+            "2508.01330v4",
+            "2510.00413v2",
+            "2604.05719v1",
+            "2510.04618v3",
+            "2602.06075v1",
+            "2506.14866v2",
+            "2601.06377v1",
+            "2602.10139v3",
+            "2603.18429v1",
+            "2604.09747v1",
+            "2507.10644v4",
+            "2604.00131v2",
+            "2602.14038v1",
+            "2508.14040v2"
+        ]
+    }
+]
