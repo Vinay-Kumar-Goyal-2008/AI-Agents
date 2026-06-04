@@ -1,4 +1,5 @@
 faiss_index/
 pdf_cache/
 venv/
+faiss_4/
 papers.json

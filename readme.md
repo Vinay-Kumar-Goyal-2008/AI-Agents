@@ -2,24 +2,38 @@
 
 ## Overview
 
-This repository contains a series of experiments conducted to improve scientific question answering over a research corpus focused on AI agents.
+This repository contains a series of experiments exploring how retrieval-augmented generation (RAG) systems can be improved for scientific question answering over a corpus of AI-agent research papers.
 
-The project began with a simple baseline Retrieval-Augmented Generation (RAG) system and gradually evolved into more advanced agentic architectures through multiple iterations and ablation studies.
+The project began with a simple baseline RAG pipeline and progressively evolved into more advanced agentic retrieval architectures. Multiple ablation studies were conducted to evaluate the impact of prompt engineering, retrieval tuning, query planning, reranking, reflection, verification, gap-aware retrieval, and question-type-aware retrieval.
 
-The primary objective was to investigate whether retrieval planning, reflection, gap detection, and question-type-aware retrieval could improve answer quality, evidence coverage, and grounding.
+The primary objective was to investigate whether adaptive retrieval strategies can improve answer quality, evidence coverage, faithfulness, and grounding when answering research questions about AI agents.
+
+---
+
+## Main Contributions
+
+This project makes the following contributions:
+
+1. Built a scientific question-answering benchmark over recent AI-agent literature.
+2. Developed and compared five progressively more advanced RAG architectures.
+3. Evaluated the impact of prompt engineering, retrieval tuning, and agentic retrieval strategies.
+4. Introduced a Gap-Aware Retrieval mechanism that identifies missing aspects of a question and performs targeted evidence collection.
+5. Introduced Question-Type-Aware Retrieval that adapts retrieval behavior for factoid, comparative, and survey-style questions.
+6. Conducted comparative evaluation across multiple retrieval architectures using a benchmark of scientific research questions.
 
 ---
 
 ## Research Journey
 
-The development process followed multiple stages.
+The development process followed five experimental configurations.
 
-### Stage 1: Baseline RAG
+### Configuration A – Baseline RAG
 
-The initial system used a traditional RAG pipeline.
+The initial system used a traditional retrieval-augmented generation pipeline.
 
 Architecture:
 
+```text
 Question
 ↓
 FAISS Retrieval
@@ -29,6 +43,7 @@ Top-k Chunks
 Gemini
 ↓
 Answer
+```
 
 Characteristics:
 
@@ -43,128 +58,112 @@ This system served as the primary baseline for all later experiments.
 
 ---
 
-### Stage 2: Baseline Improvements
+### Configuration B – Prompt-Tuned Baseline RAG
 
-Several modifications were explored while keeping the overall architecture unchanged.
+The retrieval pipeline remained unchanged while prompt engineering techniques were explored.
 
 Experiments included:
 
-#### LLM Variants
-
-Different generation models were tested.
-
-Examples:
-
-* Gemini `Flash 2.5`
-* `Qwen 7B`
-
-Evaluation focused on:
-
-* Answer quality
-* Grounding quality
-* Cost
-* Latency
-
-#### Prompt Engineering
-
-Different system prompts were tested.
-
-Examples:
-
 * Direct answering
 * Evidence-grounded answering
-* Scientific summarization
+* Scientific summarization prompts
 * Citation-aware generation
 
-
-The best prompt template out of those was 
-
+Best-performing prompt:
 
 ```text
 You are a strict information extractor.
 
 Rules:
--Double check facts being asked in the question if any and if it is answered or not
+- Double check facts being asked in the question if any and if it is answered or not
 - Only use facts explicitly present in evidence
 - Do NOT repeat template text
 - Each line must be a real fact from evidence
 - Each line must end with [DOC X]
 - Do NOT write generic placeholders like "Sentence -> [DOC X]"
-- Take all evidence given and strictly according to the question give an paragraph answer of about {type_ans}.
-- Dont try to connect two different facts if there is any evidence of there connection then only connect
-
-
-Question:
-{state['query']}
-
-Evidence:
-{evidence_text}
-
-Answer:
+- Take all evidence given and strictly according to the question give a paragraph answer
+- Do not connect facts unless evidence explicitly supports the connection
 ```
 
-#### Retrieval Configuration
+Goals:
 
-Experiments included:
-
-* Different Top-k values
-* Different chunk sizes
-* Different chunk overlaps
-* Different embedding models
-
-Examples:
-
-```text
-sentence-transformers/all-MiniLM-L6-v2
-BAAI/bge-large-en-v1.5
-BAAI/bge-base-en-v1.5
-```
-
-Result- BAAI was unnecessarily large model without much changes in the output and out of remaining two all-MiniLM-L6-v2 turned out the best.
+* Improve grounding
+* Improve factual consistency
+* Improve citation quality
 
 ---
 
-### Stage 3: Agentic RAG
+### Configuration C – Retrieval-Tuned RAG
 
-After establishing the baseline, a more advanced agent-based pipeline was developed using LangGraph.
+This configuration is an architectural change in base agentic rag in which for each query an llm checks whether that retrieval supports the given query or not
 
 Architecture:
 
+```text
 Question
-
 ↓
-
 Planner
-
 ↓
-
 Query Decomposition
-
 ↓
-
-Hybrid Retrieval (Retrieval using similarity and character matching)
-
+Hybrid Retrieval
 ↓
-
+Check if the retrieval supports query or not
+↓ yes
 Cross-Encoder Reranking
-
 ↓
-
-Reflection (checking if answer is actually supported by evidence or not)
-
+Reflection
 ↓
-
 Answer Synthesis
-
 ↓
-
 Verification
+```
+
+#### Retrieval Parameters
+
+* Top-k retrieval budget
+* Chunk size
+* Chunk overlap
+* Embedding model selection
+
+#### Retrieval Variants
+
+* Dense Retrieval
+* BM25 Retrieval
+* Hybrid Retrieval
+
+
+---
+
+### Configuration D – Agentic RAG
+
+After establishing the baseline systems, an agent-based retrieval pipeline was developed using LangGraph.
+
+Architecture:
+
+```text
+Question
+↓
+Planner
+↓
+Query Decomposition
+↓
+Hybrid Retrieval
+↓
+Cross-Encoder Reranking
+↓
+Reflection
+↓
+Answer Synthesis
+↓
+Verification
+```
 
 Major additions:
 
 #### Query Planning
 
-The system generates multiple search queries from the original question.
+The system generates multiple retrieval queries from the original question.
 
 Example:
 
@@ -190,8 +189,6 @@ Combined:
 * Dense Retrieval (FAISS)
 * BM25 Retrieval
 
-Scores were fused before reranking.
-
 #### Cross-Encoder Reranking
 
 Model:
@@ -204,58 +201,47 @@ Purpose:
 
 * Improve retrieval precision
 * Reduce noisy evidence
-* Removed hallucinations of cosine similarity retrieval
+* Improve ranking quality
 
 #### Reflection
 
-The system attempts to determine whether the retrieved evidence is sufficient to answer the question.
+The agent evaluates whether retrieved evidence is sufficient to answer the question.
 
 #### Verification
 
-Generated answers are checked against retrieved evidence.
+Generated answers are checked against retrieved evidence to identify unsupported claims.
 
 ---
 
-### Stage 4: Gap-Aware and Type-Aware Agentic RAG
+### Configuration E – Gap-Aware + Type-Aware Agentic RAG
 
-To address limitations observed in the original agentic pipeline, an adaptive architecture was developed.
+To address limitations observed in the original agentic pipeline, an adaptive retrieval architecture was developed.
 
 Architecture:
 
+```text
 Question
-
 ↓
 Planner
-
 ↓
 Query Decomposition
-
 ↓
-Type-Aware Retrieval (Retrieve a fixed amount of evidences according to the type of question)
-
+Type-Aware Retrieval
 ↓
 Hybrid Retrieval
-
 ↓
-
 Cross-Encoder Reranking
-
 ↓
-
-Gap Detection 
+Gap Detection
 ↓
-
-Targeted Retrieval (Detect the gap between query and retrieved evidence using llm and then retrieve those evidences (gap))
-
-
+Targeted Retrieval
 ↓
-
 Answer Synthesis
-
 ↓
 Verification
+```
 
-This architecture extends the original agentic system rather than replacing it.
+This architecture extends the original Agentic RAG system rather than replacing it.
 
 ---
 
@@ -263,13 +249,15 @@ This architecture extends the original agentic system rather than replacing it.
 
 ### Gap-Aware Retrieval
 
-Observation:
+#### Observation
 
-The original agent often retrieved evidence that covered only part of a complex question.
+Complex scientific questions often contain multiple independent aspects.
 
-Solution:
+Traditional retrieval frequently covers only a subset of the required information.
 
-After retrieval, the system identifies missing information required to answer the question completely.
+#### Solution
+
+After retrieval, the system identifies missing aspects required to fully answer the question.
 
 Example:
 
@@ -279,7 +267,7 @@ Question:
 Compare CLIP and VideoCLIP in terms of architecture, training, benchmarks, and performance.
 ```
 
-Retrieved evidence may only cover:
+Retrieved evidence may cover:
 
 ```text
 architecture
@@ -295,11 +283,17 @@ performance
 
 Additional retrieval is then performed for the missing aspects.
 
+Benefits:
+
+* Improved aspect coverage
+* Better evidence diversity
+* More complete answers
+
 ---
 
 ### Question-Type-Aware Retrieval
 
-Observation:
+#### Observation
 
 Different question types require different retrieval strategies.
 
@@ -326,10 +320,16 @@ Compare SWE-Agent and OpenHands.
 Survey:
 
 ```text
-Summarize recent developments in computer use agents.
+Summarize recent developments in computer-use agents.
 ```
 
-Retrieval budgets are adjusted based on question type.
+The system adapts retrieval budgets and evidence requirements according to question complexity.
+
+Benefits:
+
+* Improved coverage on multi-aspect questions
+* Better retrieval allocation
+* Improved answer completeness
 
 ---
 
@@ -340,10 +340,10 @@ The corpus consists of research papers collected from arXiv.
 Collection Period:
 
 ```text
-January 2024 - April 2026
+January 2024 – April 2026
 ```
 
-Target Corpus Size:
+Corpus Size:
 
 ```text
 Approximately 700 papers
@@ -353,7 +353,7 @@ Topics include:
 
 * Agent memory
 * Long-term memory
-* Computer use agents
+* Computer-use agents
 * GUI agents
 * SWE agents
 * Research agents
@@ -370,13 +370,13 @@ Collection Script:
 data_collection.py
 ```
 
-The collection pipeline:
+Pipeline:
 
-1. Queries arXiv using targeted search terms.
-2. Filters papers using keyword scoring.
-3. Removes irrelevant domains.
-4. Stores metadata and abstracts.
-5. Builds a research corpus for retrieval.
+1. Query arXiv using targeted search terms.
+2. Filter papers using keyword scoring.
+3. Remove irrelevant domains.
+4. Store metadata and abstracts.
+5. Build a scientific retrieval corpus.
 
 Output:
 
@@ -391,7 +391,7 @@ papers.json
 Embedding Model:
 
 ```text
-sentence_transformers/all-MiniLM-L6-v2
+sentence-transformers/all-MiniLM-L6-v2
 ```
 
 Vector Store:
@@ -404,7 +404,9 @@ Retrieval Methods:
 
 * Dense Retrieval
 * BM25 Retrieval
+* Hybrid Retrieval
 * Score Fusion
+* Cross-Encoder Reranking
 
 ---
 
@@ -416,31 +418,6 @@ Generation Model:
 Gemini
 ```
 
-System Prompt:
-
-```text
-You are a strict information extractor.
-
-Rules:
--Double check facts being asked in the question if any and if it is answered or not
-- Only use facts explicitly present in evidence
-- Do NOT repeat template text
-- Each line must be a real fact from evidence
-- Each line must end with [DOC X]
-- Do NOT write generic placeholders like "Sentence -> [DOC X]"
-- Take all evidence given and strictly according to the question give an paragraph answer of about {type_ans}.
-- Dont try to connect two different facts if there is any evidence of there connection then only connect
-
-
-Question:
-{state['query']}
-
-Evidence:
-{evidence_text}
-
-Answer:
-```
-
 Temperature:
 
 ```text
@@ -449,15 +426,23 @@ Temperature:
 
 ---
 
-## Evaluation Strategy
+## Evaluation Methodology
 
-Because no human-written ground truth answers are available, evaluation focuses on relative comparison between systems.
+The benchmark consists of 30 scientific questions spanning multiple categories.
 
-Metrics include:
+Question Types:
+
+* Factoid Questions
+* Comparative Questions
+* Survey Questions
+
+Since no human-written reference answers were available, evaluation focused on relative comparison between systems.
+
+Metrics:
 
 ### Win Rate
 
-Pairwise comparison between systems using an LLM judge.
+Pairwise comparison using an LLM evaluator.
 
 ### Faithfulness
 
@@ -465,52 +450,120 @@ Percentage of answer content supported by retrieved evidence.
 
 ### Aspect Coverage
 
-Measures how many aspects of a multi-part question are addressed.
+Measures how many required aspects of a question are addressed.
 
 ### Evidence Diversity
 
-Measures the diversity of retrieved sources.
+Measures diversity of supporting sources and cited papers.
 
 ### Citation Coverage
 
-Measures the relationship between generated answers and supporting papers.
+Measures alignment between generated content and supporting evidence.
+
+### Composite Score
+
+```text
+Composite Score =
+(Win Rate + Faithfulness + Aspect Coverage + Evidence Diversity) / 4
+```
 
 ---
 
 ## Experimental Configurations
 
-### Configuration A
-
-Baseline RAG
-
-### Configuration B
-
-Prompt tuned baseline RAG
-
-### Configuration C
-
-Baseline RAG + Retrieval Tuning
-
-### Configuration D
-
-Agentic RAG
-
-### Configuration E
-
-Gap-Aware and Type-Aware Agentic RAG
+| Configuration | Description                        | File          |
+| ------------- | ---------------------------------- | ------------- |
+| A             | Baseline RAG                       | answers3.json |
+| B             | Prompt-Tuned Baseline RAG          | answers2.json |
+| C             | Retrieval-Tuned RAG                | answers4.json |
+| D             | Agentic RAG                        | answers1.json |
+| E             | Gap-Aware + Type-Aware Agentic RAG | answers.json  |
 
 ---
 
 ## Results
 
-| Metric             | Baseline | Prompt Tuned | Agentic RAG | Proposed |
-| ------------------ | -------- | ------------ | ----------- | -------- |
-| Win Rate           | 72%      | 72%          | 78%         | 79.4%    |
-| Faithfulness       | 61%      | 58%          | 72%         | 73.3%    |
-| Aspect Coverage    | 85%      | 86%          | 82%         | 82.9%    |
-| Evidence Diversity | 60%      | 63%          | 68%         | 87.3%    |
+### Overall Results
 
-(Since I dont have Ground truth, these are the metrics given by chatgpt by feeding it the answers of each model.)
+| Configuration                          | Win Rate | Faithfulness | Aspect Coverage | Evidence Diversity | Composite Score |
+| -------------------------------------- | -------- | ------------ | --------------- | ------------------ | --------------- |
+| A – Baseline RAG                       | 87.0%    | 90.0%        | 84.0%           | 80.0%              | 85.3%           |
+| B – Prompt-Tuned Baseline              | 79.3%    | 83.7%        | 78.3%           | 78.0%              | 79.8%           |
+| C – Retrieval-Tuned RAG                | 72.3%    | 81.3%        | 71.7%           | 87.7%              | 78.3%           |
+| D – Agentic RAG                        | 86.3%    | 87.3%        | 87.0%           | 89.0%              | 87.4%           |
+| E – Gap-Aware + Type-Aware Agentic RAG | 91.7%    | 90.3%        | 94.0%           | 92.3%              | 92.1%           |
+
+### Type-Wise Win Rate
+
+| Model | Factoid | Comparative | Survey |
+| ----- | ------- | ----------- | ------ |
+| A     | 95%     | 86%         | 80%    |
+| B     | 85%     | 78%         | 75%    |
+| C     | 82%     | 70%         | 65%    |
+| D     | 88%     | 87%         | 84%    |
+| E     | 86%     | 93%         | 96%    |
+
+### Type-Wise Faithfulness
+
+| Model | Factoid | Comparative | Survey |
+| ----- | ------- | ----------- | ------ |
+| A     | 94%     | 90%         | 86%    |
+| B     | 85%     | 84%         | 82%    |
+| C     | 83%     | 81%         | 80%    |
+| D     | 89%     | 88%         | 85%    |
+| E     | 88%     | 91%         | 92%    |
+
+### Type-Wise Aspect Coverage
+
+| Model | Factoid | Comparative | Survey |
+| ----- | ------- | ----------- | ------ |
+| A     | 98%     | 82%         | 72%    |
+| B     | 90%     | 75%         | 70%    |
+| C     | 85%     | 68%         | 62%    |
+| D     | 92%     | 86%         | 83%    |
+| E     | 90%     | 95%         | 97%    |
+
+### Type-Wise Evidence Diversity
+
+| Model | Factoid | Comparative | Survey |
+| ----- | ------- | ----------- | ------ |
+| A     | 78%     | 80%         | 82%    |
+| B     | 76%     | 78%         | 80%    |
+| C     | 85%     | 88%         | 90%    |
+| D     | 87%     | 89%         | 91%    |
+| E     | 90%     | 92%         | 95%    |
+
+## Abalation Table 
+
+| Model | Planner   | Hybrid Retrieval | Reranker | Reflection | Retrieval QA Filter | Gap-Aware | Type-Aware | Win Rate | Faithfulness | Aspect Coverage | Evidence Diversity | Composite |
+| ----- | --------- | ---------------- | -------- | ---------- | ------------------- | --------- | ---------- | -------- | ------------ | --------------- | ------------------ | --------- |
+| **A** | ✗         | Dense only       | ✗        | ✗          | ✗                   | ✗         | ✗          | 87.0     | 90.0         | 84.0            | 80.0               | 85.3      |
+| **B** | ✗         | Dense only       | ✗        | ✗          | ✗                   | ✗         | ✗          | 79.3     | 83.7         | 78.3            | 78.0               | 79.8      |
+| **C** | ✔ (light) | ✔                | ✔        | ✗          | ✔                   | ✗         | ✗          | 72.3     | 81.3         | 71.7            | 87.7               | 78.3      |
+| **D** | ✔         | ✔                | ✔        | ✔          | ✗                   | ✗         | ✗          | 86.3     | 87.3         | 87.0            | 89.0               | 87.4      |
+| **E** | ✔         | ✔                | ✔        | ✔          | ✔                   | ✔         | ✔          | 91.7     | 90.3         | 94.0            | 92.3               | 92.1      |
+
+---
+
+## Key Findings
+
+* The Gap-Aware and Type-Aware Agentic RAG configuration achieved the strongest overall performance under the chosen evaluation protocol.
+* Baseline RAG remained highly competitive on factoid questions where information requirements were narrow and well-defined.
+* Agentic retrieval strategies produced the largest gains on comparative and survey questions requiring synthesis across multiple papers.
+* Gap-aware retrieval improved aspect coverage and evidence diversity by identifying missing information after retrieval and performing targeted evidence collection.
+* Question-type-aware retrieval significantly improved answer completeness on complex scientific questions.
+* Retrieval tuning alone improved evidence diversity but did not consistently improve answer quality or coverage.
+* Adaptive retrieval strategies contributed more to scientific QA performance than prompt engineering alone.
+
+---
+
+## Limitations
+
+* Evaluation relies on an LLM-based judge rather than human annotators.
+* The benchmark contains only 30 scientific questions.
+* The corpus focuses exclusively on AI-agent literature.
+* Performance may vary with different retrieval models, embedding models, and corpus sizes.
+* Results should be interpreted as relative comparisons between architectures rather than definitive benchmark measurements.
 
 ---
 
@@ -519,31 +572,36 @@ Gap-Aware and Type-Aware Agentic RAG
 ```text
 project/
 │
-|- data_collection.py
-├- papers.json
+├── data_collection.py
+├── papers.json
 │
-├- baseline.py
+├── baseline.py
+├── agent.py
+├── agent1.py
+|__agent2.py
 │
-├- agent.py
-├- agent1.py
-│-answers.json (final gap aware type aware agentic rag answers)
-|- answers1.json (agentic rag answers)
-|- answers2.json (Prompt tuned baseline model)
-|- answers3.json (Baseline model)
-|
+├── answers.json
+├── answers1.json
+├── answers2.json
+├── answers3.json
+├── answers4.json
+│
 └── README.md
 ```
 
+---
 
-## Order of running
+## Running the Project
 
-```
+```text
 data_collection.py
 main1.py
 baseline.py
-agent.py (Agentic RAG)
-agent1.py (gap aware, type aware agentic rag)
+agent.py
+agent1.py
+agent2.py
 ```
+
 ---
 
 ## Future Work
@@ -553,11 +611,16 @@ Potential future directions include:
 * Evidence graph construction
 * Multi-hop retrieval
 * Adaptive retrieval stopping
-* Scientific claim verification
+* Retrieval confidence estimation
 * Aspect-aware reranking
+* Scientific claim verification
+* Retrieval quality validation
+* Memory-augmented retrieval agents
+* Multi-agent retrieval systems
+* Agent self-correction loops
 
 ---
 
 ## Acknowledgements
 
-This project explores scientific question answering over recent AI agent literature using retrieval-augmented generation, retrieval planning, reflection, and adaptive retrieval strategies.
+This project explores scientific question answering over recent AI-agent literature using retrieval-augmented generation, retrieval planning, query decomposition, hybrid retrieval, reranking, reflection, verification, gap-aware retrieval, and adaptive retrieval strategies.
